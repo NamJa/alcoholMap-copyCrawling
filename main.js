@@ -8,10 +8,13 @@ const read_html = request(url, (err,res,data) => {
   console.log('okay cheerio!');
 
   let $ = cheerio.load(data);
-  let class_a = $('th', $('.panel.panel-default'));
-  
-  class_a.each(function(){
-    console.log($(this).text());
-  })
+  let json = [], label, pubName
+  $('body > div.container-fluid > div > table > tbody > tr').each(function(index, ele){
+    label = $(this).find('tr > th:nth-child(1) > span').text()
+    pubName = $(this).find('tr > th:nth-child(2) > a').text()
+    json.push({lable: label, pubName: pubName})
+  });
+
+  console.log('json: ', json);
 
 });
