@@ -14,6 +14,7 @@ const read_html = request(url, (err,res,data) => {
     label = $(this).find('tr > th:nth-child(1) > span').text()
     pubName = $(this).find('tr > th:nth-child(2) > a').text()
     location = $(this).find('tr > th:nth-child(3) > a:nth-child(2)').attr('href');
+    location = decodeURI(location);
     json.push({ "lable" : label, "pubName" : pubName, "location" : location })
   });
 
