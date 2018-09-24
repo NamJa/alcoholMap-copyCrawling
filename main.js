@@ -16,14 +16,11 @@ const read_html = request(url, (err,res,data) => {
     pubName = $(this).find('tr > th:nth-child(2) > a').text()
     location = $(this).find('tr > th:nth-child(3) > a:nth-child(2)').attr('href');
     location = decodeURI(location);
+    location = location.replace("https://www.google.com/maps/dir//", "");
     json.push({ "lable" : label, "pubName" : pubName, "location" : location })
   });
 
-  //console.log('json: ', json);
-  for(let i = 0; i < json.length; i++)
-  {
-    locationArr[i] = json[i].location.replace("https://www.google.com/maps/dir//", "");
-  }
-  console.log(locationArr);
+  console.log('json: ', json);
 
+  
 });
